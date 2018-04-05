@@ -66,11 +66,11 @@ class WebfluxRoutesConfig(val applicationContext: ApplicationContext,
 
               mapOf(
                   "result" to prepareStatement.executeQuery().metaData,
-                  "driverName" to metaData?.driverName,
-                  "driverVersion" to metaData?.driverVersion,
-                  "databaseProductVersion" to metaData?.databaseProductVersion,
-                  "url" to metaData?.url,
-                  "userName" to metaData?.userName,
+                  "driverName" to metaData.driverName,
+                  "driverVersion" to metaData.driverVersion,
+                  "databaseProductVersion" to metaData.databaseProductVersion,
+                  "url" to metaData.url,
+                  "userName" to metaData.userName,
                   "holdingDataSources" to "$dataSourcesHolder"
               )
             }
