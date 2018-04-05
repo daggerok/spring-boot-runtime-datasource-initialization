@@ -36,7 +36,7 @@ script:
 - http :8080/ query="select 1 from dual" springJpaDatabase=ORACLE springDatasourceUrl="jdbc:oracle:thin:@//127.0.0.1:1521/xe" springDatasourceUsername=system springDatasourcePassword=oraclepassword springDatasourceClassName="oracle.jdbc.OracleDriver"
 - http :8080
 - stop_any 8080 80
-- bash gradlew composeDown
+- bash gradlew composeDown -Pprofile=all
 
 cache:
   directories:
