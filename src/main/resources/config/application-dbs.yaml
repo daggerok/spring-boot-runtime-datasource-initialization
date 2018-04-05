@@ -1,3 +1,5 @@
+#this config props are reallly not using... could be removed, it's just for help to pass right request body to webflux resource
+
 app:
   dbs:
     postgres:
