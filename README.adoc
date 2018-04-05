@@ -23,6 +23,7 @@ http :8080/ \
   springDatasourceUsername=system \
   springDatasourcePassword=oraclepassword \
   springDatasourceClassName="oracle.jdbc.OracleDriver"
+
 {
     "databaseProductVersion": "Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production",
     "driverName": "Oracle JDBC driver",
@@ -43,6 +44,7 @@ http :8080/ \
   springDatasourceUsername=postgresuser \
   springDatasourcePassword=postgrespassword \
   springDatasourceClassName="org.postgresql.Driver"
+
 {
     "databaseProductVersion": "9.4.17",
     "driverName": "PostgreSQL Native Driver",
