@@ -16,7 +16,13 @@ lastly I can execute some SQL query to verify if that dataSource could be used
 bash build/libs/*.jar
 
 # ora
-http :8080/ query="select 1 from dual" springJpaDatabase=ORACLE springDatasourceUrl="jdbc:oracle:thin:@//127.0.0.1:1521/xe" springDatasourceUsername=system springDatasourcePassword=oraclepassword springDatasourceClassName="oracle.jdbc.OracleDriver"
+http :8080/ \
+  query="select 1 from dual" \
+  springJpaDatabase=ORACLE \
+  springDatasourceUrl="jdbc:oracle:thin:@//127.0.0.1:1521/xe" \
+  springDatasourceUsername=system \
+  springDatasourcePassword=oraclepassword \
+  springDatasourceClassName="oracle.jdbc.OracleDriver"
 {
     "databaseProductVersion": "Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production",
     "driverName": "Oracle JDBC driver",
@@ -30,7 +36,13 @@ http :8080/ query="select 1 from dual" springJpaDatabase=ORACLE springDatasource
 }
 
 # pg
-http :8080/ query="select 1" springJpaDatabase=POSTGRESQL springDatasourceUrl="jdbc:postgresql://0.0.0.0:5432/postgresdatabase" springDatasourceUsername=postgresuser springDatasourcePassword=postgrespassword springDatasourceClassName="org.postgresql.Driver"
+http :8080/ \
+  query="select 1" \
+  springJpaDatabase=POSTGRESQL \
+  springDatasourceUrl="jdbc:postgresql://0.0.0.0:5432/postgresdatabase" \
+  springDatasourceUsername=postgresuser \
+  springDatasourcePassword=postgrespassword \
+  springDatasourceClassName="org.postgresql.Driver"
 {
     "databaseProductVersion": "9.4.17",
     "driverName": "PostgreSQL Native Driver",
