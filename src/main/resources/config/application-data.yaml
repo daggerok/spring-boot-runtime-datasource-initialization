@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    continue-on-error: true
+  jpa:
+    generate-ddl: false
+    hibernate:
+      ddl-auto: validate

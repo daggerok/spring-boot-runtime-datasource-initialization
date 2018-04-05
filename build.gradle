@@ -1,0 +1,124 @@
+buildscript {
+  ext {
+    javaVersion = "1.8"
+    kotlinVersion = "1.2.31"
+    springBootVersion = "2.0.0.RELEASE"
+  }
+}
+
+plugins {
+  id "idea"
+  id "java"
+  id "maven"
+  id "eclipse"
+  id "org.jetbrains.kotlin.jvm" version "1.2.31"
+  id "org.springframework.boot" version "2.0.0.RELEASE"
+  id "com.avast.gradle.docker-compose" version "0.6.13"
+  id "org.jetbrains.kotlin.plugin.noarg" version "1.2.31"
+  id "org.jetbrains.kotlin.plugin.spring" version "1.2.31"
+  id "org.jetbrains.kotlin.plugin.allopen" version "1.2.31"
+  id "io.spring.dependency-management" version "1.0.4.RELEASE"
+}
+
+group = "daggerok"
+version = "0.0.1"
+sourceCompatibility = targetCompatibility = "$javaVersion"
+
+compileKotlin {
+  incremental = true
+  kotlinOptions {
+    freeCompilerArgs = ["-Xjsr305=strict"]
+    jvmTarget = "$javaVersion"
+  }
+}
+
+compileTestKotlin {
+  incremental = true
+  kotlinOptions {
+    freeCompilerArgs = ["-Xjsr305=strict"]
+    jvmTarget = "$javaVersion"
+  }
+}
+
+allOpen {
+  annotation("javax.persistence.Entity")
+}
+
+noArg {
+  annotation("javax.persistence.Entity")
+}
+
+defaultTasks "clean", "build"
+
+repositories {
+  mavenLocal()
+  mavenCentral()
+  flatDir { dirs "libs" }
+}
+
+dependencies {
+
+  compile(name: "ojdbc6")
+  compile("org.postgresql:postgresql:9.4.1212.jre7")
+  runtime("com.h2database:h2")
+
+  compile("org.springframework.boot:spring-boot-starter-webflux")
+  compile("org.springframework.boot:spring-boot-starter-actuator")
+  runtime("org.springframework.boot:spring-boot-devtools")
+  compileOnly("org.springframework.boot:spring-boot-configuration-processor")
+
+  compile("org.springframework.boot:spring-boot-starter-data-jpa")
+
+  compile("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.4.1")
+  compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
+  testCompile("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")
+}
+
+dependencyManagement {
+  imports {
+    mavenBom "org.springframework.boot:spring-boot-dependencies:$springBootVersion"
+  }
+}
+
+bootJar {
+  launchScript()
+}
+
+def profile = project.hasProperty("profile") ? project.getProperty("profile") : "gradle"
+
+dockerCompose {
+  useComposeFiles = [project.file("docker-compose-${profile}.yaml")]
+  // captureContainersOutput = true
+  captureContainersOutput = false
+  stopContainers = true
+  removeContainers = true
+  removeImages = "Local"
+  removeVolumes = true
+  removeOrphans = true
+  forceRecreate = true
+  waitForTcpPorts = false
+  projectName = project.name
+}
+
+composeUp.dependsOn assemble
+
+task wrapper(type: Wrapper) {
+  gradleVersion = "4.6"
+  distributionType = "ALL"
+}
+
+test {
+  systemProperties "property": "value"
+}
+
+idea {
+  module {
+    downloadSources = true
+  }
+}
+
+eclipse {
+  classpath {
+    downloadSources = true
+  }
+}
