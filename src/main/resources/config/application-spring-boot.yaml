@@ -2,6 +2,3 @@ spring:
   output:
     ansi:
       enabled: always
-  datasource:
-    continue-on-error: true
-
