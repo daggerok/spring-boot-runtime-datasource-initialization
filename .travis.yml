@@ -28,6 +28,7 @@ script:
 - http :8080
 - stop_any 8080 80
 #
+- bash mvnw >/dev/null 2>&1
 - bash ./target/*.jar &
 - wait_for 8080
 - http :8080
