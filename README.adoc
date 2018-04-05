@@ -1,4 +1,4 @@
-= spring-boot-runtime-datasource-initialization
+= spring-boot-runtime-datasource-initialization image:https://travis-ci.org/daggerok/spring-boot-runtime-datasource-initialization.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/spring-boot-runtime-datasource-initialization"]
 
 //tag::content[]
 == Runtime datasource initialization using spring-boot
