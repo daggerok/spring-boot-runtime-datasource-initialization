@@ -6,9 +6,9 @@
 This repository contains my trying to initialize different data-sources in runtime and use them to querying / handling SQL data.
 To do so, my starting point is in-memory h2 database.
 I have implemented two rest resources (GET and POST).
-GET resource basically showing current (by default in-memory h2) dataSource bean containing from application context
-POST resource must create new DataSource bean in runtime and add it to dataSourcesHolder bean.
-lastly I can execute some SQL query to verify if that dataSource could be used
+GET resource basically showing current (by default in-memory h2) dataSource bean containing from application context.
+POST resource allows you create new DataSource bean in runtime and add it to dataSourcesHolder bean.
+lastly we are executing a SQL query to verify if that dataSource is working properly
 
 .prepare databases using docker (hope you have enough RAM) and start app
 ----
