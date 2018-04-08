@@ -3,4 +3,3 @@ spring:
     include:
     - spring-boot
     - data
-    - dbs
