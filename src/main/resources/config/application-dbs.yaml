@@ -1,4 +1,4 @@
-#this config props could be removed, theay are really not using... just to help pass right request body to webflux resource
+#this config props could be removed, it's really not using... just to help pass right request body to webflux resource
 
 app:
   dbs:
